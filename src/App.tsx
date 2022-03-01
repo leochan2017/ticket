@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import './App.css'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import TicketPage from './pages/ticket'
+import HiddenPage from './pages/hidden'
+
+enum EShowPage {
+  'none' = '',
+  'ticket' = 'ticket'
 }
 
-export default App;
+function App() {
+  const [showPage, setShowPage] = useState<EShowPage>(EShowPage.none)
+
+  if (!showPage) {
+    return <HiddenPage onChange={() => { setShowPage(EShowPage.ticket) }} />
+  }
+
+  if (showPage === EShowPage.ticket) {
+    return <TicketPage />
+  }
+
+  return <div>No data...</div>
+}
+
+export default App
