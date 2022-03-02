@@ -9,7 +9,7 @@ const defaultData = {
   destination: '车陂南地铁站(天河区)',
 
   // right
-  time2: '20:40',
+  time2: '19:10',
   depart2: '苏元地铁站B口出右后方30米路口边',
   destination2: '宝安中心地铁站(宝安区)'
 }
