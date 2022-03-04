@@ -4,18 +4,24 @@ import moment from 'moment'
 import './index.css'
 import { EType } from '../hidden'
 const cls = 'ticket-page'
+
 const today = new Date()
+const todayStr = moment().format('YYYY年MM月DD日')
 
 interface IVerbData {
+  date?: string;
   time?: string;
   depart?: string;
   destination?: string
+  verifycode?: string
 }
 
 enum EVerbForm {
+  'date' = 'date',
   'time' = 'time',
   'depart' = 'depart',
-  'destination' = 'destination'
+  'destination' = 'destination',
+  'verifycode' = 'verifycode'
 }
 
 export interface IProps {
@@ -27,17 +33,24 @@ const generateVerifyCode = () => {
 }
 
 function TicketPage(props: IProps) {
+  document.title = defaultData.title
   // console.log('TicketPage', props)
+  const defaultVerifyCode = generateVerifyCode()
+
   const [count, setCount] = useState<number>(0)
   const [showInput, setShowInput] = useState<EVerbForm | null>(null)
   const [verbData, setVerbData] = useState<IVerbData>(props.pageType === EType.left ? {
+    date: todayStr,
     time: defaultData.time,
     depart: defaultData.depart,
-    destination: defaultData.destination
+    destination: defaultData.destination,
+    verifycode: defaultVerifyCode
   } : {
+    date: todayStr,
     time: defaultData.time2,
     depart: defaultData.depart2,
-    destination: defaultData.destination2
+    destination: defaultData.destination2,
+    verifycode: defaultVerifyCode
   })
 
   const handleVerbFormClick = (key: EVerbForm) => {
@@ -60,10 +73,21 @@ function TicketPage(props: IProps) {
 
       <div className="ticket-page-content-top">
         <div className="ticket-page-content-top-datetime">
-          {moment().format('YYYY年MM月DD日') + ' '}
+          {showInput === EVerbForm.date ?
+            <input
+              type="text"
+              defaultValue={verbData.date}
+              onBlur={e => handleVerbFormBlur(EVerbForm.date, e.target.value)}
+            /> :
+            <span onClick={() => handleVerbFormClick(EVerbForm.date)}>
+              {verbData.date + ' '}
+            </span>
+          }
+
           {showInput === EVerbForm.time ?
             <input
               type="text"
+              defaultValue={verbData.time}
               onBlur={e => {
                 // console.log('blur time e', e)
                 const { value } = e.target
@@ -82,6 +106,7 @@ function TicketPage(props: IProps) {
             {showInput === EVerbForm.depart ?
               <input
                 type="text"
+                defaultValue={verbData.depart}
                 onBlur={e => {
                   // console.log('blur depart e', e)
                   const { value } = e.target
@@ -101,6 +126,7 @@ function TicketPage(props: IProps) {
             {showInput === EVerbForm.destination ?
               <input
                 type="text"
+                defaultValue={verbData.destination}
                 onBlur={e => {
                   // console.log('blur destination e', e)
                   const { value } = e.target
@@ -115,8 +141,14 @@ function TicketPage(props: IProps) {
         </div>
       </div>
 
-      <div className="ticket-page-content-verifycode">
-        {generateVerifyCode()}
+      <div className="ticket-page-content-verifycode" onClick={() => handleVerbFormClick(EVerbForm.verifycode)}>
+        {showInput === EVerbForm.verifycode ?
+          <input
+            type="text"
+            defaultValue={verbData.verifycode}
+            onBlur={e => handleVerbFormBlur(EVerbForm.verifycode, e.target.value)}
+          /> : verbData.verifycode
+        }
       </div>
 
       <div className="ticket-page-content-contact" onClick={() => setCount(count + 1)}>
