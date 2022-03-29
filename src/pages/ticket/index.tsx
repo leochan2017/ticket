@@ -29,7 +29,8 @@ export interface IProps {
 }
 
 const generateVerifyCode = () => {
-  return (today.getTime() * today.getDay() * today.getMonth()).toString().substring(0, 4)
+  const str = parseInt(today.getDate() * today.getMonth() * today.getFullYear() + '', 16) + ''
+  return str.substring(str.length - 4)
 }
 
 function TicketPage(props: IProps) {
