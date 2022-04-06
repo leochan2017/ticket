@@ -2,9 +2,9 @@
 
 /**
  * dev: 1
- * online: 5
+ * online: 4
  */
-const count = window.location.host.indexOf('localhost') !== -1 ? 1 : 5
+const count = window.location.host.indexOf('localhost') !== -1 ? 1 : 4
 
 const defaultData = {
   count,
