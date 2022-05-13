@@ -37,8 +37,15 @@ const generateSeatStr = (personCount: number) => {
   // 两个人的时候，生成联排座位吧，这样比较真实一点
   if (personCount === 2) {
     const row = generateRandomNumber(5, 12)
-    seatArr.push(`${row}排3座`)
-    seatArr.push(`${row}排4座`)
+    const seat = generateRandomNumber(1, 3)
+    seatArr.push(`${row}排${seat}座`)
+    seatArr.push(`${row}排${seat + 1}座`)
+  } else if (personCount === 3) { // 3人也生成联排+前面一位
+    const row = generateRandomNumber(5, 12)
+    const seat = generateRandomNumber(1, 3)
+    seatArr.push(`${row}排${seat}座`)
+    seatArr.push(`${row}排${seat + 1}座`)
+    seatArr.push(`${row - 1}排${seat}座`)
   } else {
     // 其他普通情况
     for (let i = 0; i < personCount; i++) {
