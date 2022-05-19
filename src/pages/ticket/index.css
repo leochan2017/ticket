@@ -26,12 +26,29 @@
 }
 
 @keyframes bg-color {
-  0% { background-color: #e74c3c; }
-  20% { background-color: #f1c40f; }
-  40% { background-color: #00d46a; }
-  60% { background-color: #3498db; }
-  80% { background-color: #9b59b6; }
-  100% { background-color: #e74c3c; }
+  0% {
+    background-color: #e74c3c;
+  }
+
+  20% {
+    background-color: #f1c40f;
+  }
+
+  40% {
+    background-color: #00d46a;
+  }
+
+  60% {
+    background-color: #3498db;
+  }
+
+  80% {
+    background-color: #9b59b6;
+  }
+
+  100% {
+    background-color: #e74c3c;
+  }
 }
 
 .ticket-page-content-top {
@@ -64,6 +81,7 @@
   font-size: 12px;
   text-align: center;
   margin-right: 4px;
+  flex-shrink: 0;
 }
 
 

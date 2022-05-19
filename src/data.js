@@ -12,9 +12,9 @@ const defaultData = {
   contact: '乘车联系人：13892648765',
 
   // left
-  time: '15:55',
+  time: '16:45',
   depart: '宝安中心地铁站D口旁边公交站',
-  destination: '车陂南地铁站(天河区)',
+  destination: '双岗地铁站(黄埔区)',
 
   // right
   time2: '21:00',
