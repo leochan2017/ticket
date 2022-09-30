@@ -6,13 +6,14 @@ const count = window.location.host.indexOf('localhost') !== -1 ? 1 : 4
 
 const data = {
   count,
-  address1: '(A线)幸福誉3期,幸福誉1期,绿地',
+  address1: '(A线)幸福誉3/5期',
   address2: '宏发',
   address3: '幸福誉',
-  price: 13,
-  personCount: 2,
+  price: 10,
+  priceUnit: '元',
+  personCount: 3,
   departTime1: '10:00',
-  departTime2: '13:00'
+  departTime2: '14:00'
 }
 
 export default data

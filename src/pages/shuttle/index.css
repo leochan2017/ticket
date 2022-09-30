@@ -69,10 +69,11 @@
 
 .shuttle-page .tableleft {
   color: #909090;
+  width: 100px;
 }
 
 .shuttle-page .tableright {
-  font-size: 26px;
+  font-size: 24px;
   color: red;
 }
 

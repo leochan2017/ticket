@@ -17,8 +17,8 @@ const defaultData = {
   destination: '双岗地铁站(黄埔区)',
 
   // right
-  time2: '21:00',
-  depart2: '黄村地铁站B口左手边黄村招呼站里面候车',
+  time2: '20:45',
+  depart2: '黄村地铁站D口出来马路边',
   destination2: '宝安中心地铁站(宝安区)'
 }
 

@@ -11,6 +11,7 @@ interface IVerbData {
   depart: string
   destination: string
   price: number
+  priceUnit: string
   personCount: number
   seatStr: string
   departTime: string
@@ -22,7 +23,8 @@ enum EVerbForm {
   'date' = 'date',
   'personCount' = 'personCount',
   'seatStr' = 'seatStr',
-  'departTime' = 'departTime'
+  'departTime' = 'departTime',
+  'price' = 'price'
 }
 
 export interface IProps {
@@ -71,6 +73,7 @@ function ShuttlePage(props: IProps) {
     depart: defaultData.address1,
     destination: defaultData.address2,
     price: defaultData.price,
+    priceUnit: defaultData.priceUnit,
     personCount: defaultData.personCount,
     seatStr: generateSeatStr(defaultData.personCount),
     departTime: defaultData.departTime1
@@ -78,6 +81,7 @@ function ShuttlePage(props: IProps) {
     depart: defaultData.address2,
     destination: defaultData.address3,
     price: defaultData.price,
+    priceUnit: defaultData.priceUnit,
     personCount: defaultData.personCount,
     seatStr: generateSeatStr(defaultData.personCount),
     departTime: defaultData.departTime2
@@ -165,7 +169,7 @@ function ShuttlePage(props: IProps) {
               </tr>
               <tr>
                 <td className="tableleft">预订时间：</td>
-                <td>{moment(new Date().getTime() - 28888).format('YYYY-MM-DD HH:mm:ss')}</td>
+                <td>{moment(new Date().getTime() - 2333333).format('YYYY-MM-DD HH:mm:ss')}</td>
               </tr>
 
               <tr onClick={() => updateFormData(EVerbForm.seatStr, generateSeatStr(verbData.personCount))}>
@@ -173,9 +177,23 @@ function ShuttlePage(props: IProps) {
                 <td className="tableright">{verbData.seatStr}</td>
               </tr>
 
+              <tr onClick={() => handleVerbFormClick(EVerbForm.price)}>
+                <td className="tableleft">微信支付单价：</td>
+                <td>
+                  {showInput === EVerbForm.price ?
+                    <input
+                      type="text"
+                      defaultValue={verbData.price}
+                      onBlur={e => updateFormData(EVerbForm.price, e.target.value)}
+                    /> : verbData.price
+                  }
+                  {verbData.priceUnit}
+                </td>
+              </tr>
+
               <tr>
-                <td className="tableleft">单&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：</td>
-                <td>{verbData.price}RMB</td>
+                <td className="tableleft">微信支付金额：</td>
+                <td>{verbData.price * verbData.personCount}{verbData.priceUnit}</td>
               </tr>
 
               <tr onClick={() => {
@@ -190,10 +208,6 @@ function ShuttlePage(props: IProps) {
               </tr>
 
               <tr>
-                <td className="tableleft">应付金额：</td>
-                <td>{verbData.price * verbData.personCount}RMB</td>
-              </tr>
-              <tr>
                 <td className="tableleft">备&nbsp;&nbsp;&nbsp;注：</td>
                 <td> 微信支付</td>
               </tr>
@@ -202,9 +216,9 @@ function ShuttlePage(props: IProps) {
         </div>
 
 
-        <div id="aaaa">
+        {/* <div id="aaaa">
           <a href="http://gzjhqc.vip/sell/seatYudingOrder/yudingguize?uid=d9f2b50a518b4264ac8006f2a09f6b63">每天购票烦?试试自动出票</a>
-        </div>
+        </div> */}
 
 
       </div>
