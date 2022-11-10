@@ -70,21 +70,21 @@ function ShuttlePage(props: IProps) {
   document.title = '订单查看'
   const [showInput, setShowInput] = useState<EVerbForm | null>(null)
   const [verbData, setVerbData] = useState<IVerbData>(props.pageType === EType.leftBottom ? {
-    depart: defaultData.address1,
-    destination: defaultData.address2,
+    departTime: defaultData.departTime1,
+    depart: defaultData.depart1,
+    destination: defaultData.destination1,
     price: defaultData.price,
     priceUnit: defaultData.priceUnit,
     personCount: defaultData.personCount,
-    seatStr: generateSeatStr(defaultData.personCount),
-    departTime: defaultData.departTime1
+    seatStr: generateSeatStr(defaultData.personCount)
   } : {
-    depart: defaultData.address2,
-    destination: defaultData.address3,
+    departTime: defaultData.departTime2,
+    depart: defaultData.depart2,
+    destination: defaultData.destination2,
     price: defaultData.price,
     priceUnit: defaultData.priceUnit,
     personCount: defaultData.personCount,
-    seatStr: generateSeatStr(defaultData.personCount),
-    departTime: defaultData.departTime2
+    seatStr: generateSeatStr(defaultData.personCount)
   })
 
   const handleVerbFormClick = (key: EVerbForm) => {
@@ -96,6 +96,25 @@ function ShuttlePage(props: IProps) {
     d[key] = val
     setVerbData(d)
     setShowInput(null)
+
+    let locDataObj: any = {}
+    const locDataStr = localStorage.getItem('SHUTTLE')
+    if (locDataStr) locDataObj = JSON.parse(locDataStr)
+    if (props.pageType === EType.leftBottom) {
+      locDataObj.departTime1 = d.departTime
+      locDataObj.depart1 = d.depart
+      locDataObj.destination1 = d.destination
+      locDataObj.price = d.price
+    } else if (props.pageType === EType.rightBottom) {
+      locDataObj.departTime2 = d.departTime
+      locDataObj.depart2 = d.depart
+      locDataObj.destination2 = d.destination
+      locDataObj.price = d.price
+    }
+
+    if (JSON.stringify(locDataObj) !== '{}') {
+      localStorage.setItem('SHUTTLE', JSON.stringify(locDataObj))
+    }
   }
 
   useEffect(() => {
@@ -146,7 +165,7 @@ function ShuttlePage(props: IProps) {
             <tbody>
               <tr>
                 <td className="tableleft">乘客姓名：</td>
-                <td>陈小姐</td>
+                <td>陈生</td>
               </tr>
               <tr>
                 <td className="tableleft">手&nbsp;&nbsp;机&nbsp;&nbsp;号：</td>

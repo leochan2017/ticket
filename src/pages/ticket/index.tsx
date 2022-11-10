@@ -12,8 +12,8 @@ interface IVerbData {
   date?: string;
   time?: string;
   depart?: string;
-  destination?: string
-  verifycode?: string
+  destination?: string;
+  verifycode?: string;
 }
 
 enum EVerbForm {
@@ -34,6 +34,8 @@ const generateVerifyCode = () => {
 }
 
 function TicketPage(props: IProps) {
+  // console.log('defaultData', defaultData)
+
   document.title = defaultData.title
   // console.log('TicketPage', props)
   const defaultVerifyCode = generateVerifyCode()
@@ -61,9 +63,27 @@ function TicketPage(props: IProps) {
 
   const handleVerbFormBlur = (key: EVerbForm, val: string) => {
     const d = JSON.parse(JSON.stringify(verbData))
+    if (!d) return
     d[key] = val
     setVerbData(d)
     setShowInput(null)
+
+
+    let locDataObj: any = {}
+    const locDataStr = localStorage.getItem('CHUANG_XIANG')
+    if (locDataStr) locDataObj = JSON.parse(locDataStr)
+    if (props.pageType === EType.left) {
+      for (const key in d) {
+        locDataObj[key] = d[key]
+      }
+    } else if (props.pageType === EType.right) {
+      locDataObj.time2 = d.time
+      locDataObj.depart2 = d.depart
+      locDataObj.destination2 = d.destination
+    }
+    if (JSON.stringify(locDataObj) !== '{}') {
+      localStorage.setItem('CHUANG_XIANG', JSON.stringify(locDataObj))
+    }
   }
 
   return <div className={cls}>

@@ -22,4 +22,16 @@ const defaultData = {
   destination2: '宝安中心地铁站(宝安区)'
 }
 
+let locData = localStorage.getItem('CHUANG_XIANG')
+if (locData) {
+  locData = JSON.parse(locData)
+  console.log('locData CHUANG_XIANG', locData)
+  for (const key in locData) {
+    // Date is unnecessary if you want to set today for value with automatic
+    if (key !== 'date') {
+      defaultData[key] = locData[key]
+    }
+  }
+}
+
 export default defaultData
