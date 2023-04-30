@@ -6,12 +6,12 @@ const count = window.location.host.indexOf('localhost') !== -1 ? 1 : 4
 
 const data = {
   count,
-  price: 10,
+  price: 13,
   priceUnit: '元',
   personCount: 3,
 
   departTime1: '9:00',
-  depart1: '(A线)幸福悦3/5期',
+  depart1: '幸福悦3/5期',
   destination1: '宏发',
 
   departTime2: '15:00',

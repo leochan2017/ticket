@@ -197,7 +197,7 @@ function ShuttlePage(props: IProps) {
               </tr>
 
               <tr onClick={() => handleVerbFormClick(EVerbForm.price)}>
-                <td className="tableleft">微信支付单价：</td>
+                <td className="tableleft">单价：</td>
                 <td>
                   {showInput === EVerbForm.price ?
                     <input
@@ -211,7 +211,7 @@ function ShuttlePage(props: IProps) {
               </tr>
 
               <tr>
-                <td className="tableleft">微信支付金额：</td>
+                <td className="tableleft">金额：</td>
                 <td>{verbData.price * verbData.personCount}{verbData.priceUnit}</td>
               </tr>
 
@@ -230,6 +230,17 @@ function ShuttlePage(props: IProps) {
                 <td className="tableleft">备&nbsp;&nbsp;&nbsp;注：</td>
                 <td> 微信支付</td>
               </tr>
+
+              <tr>
+                <td className="tableleft">退改规则：</td>
+                <td>仅支持在发车前半小时以上退票</td>
+              </tr>
+
+              <tr>
+                <td className="tableleft">如需帮助：</td>
+                <td>客服：18664606665,13602227701(微信同号)</td>
+              </tr>
+
             </tbody>
           </table>
         </div>
