@@ -15,6 +15,9 @@ interface IVerbData {
   personCount: number
   seatStr: string
   departTime: string
+  carno: string
+  needHelp: string
+  rule: string
 }
 
 enum EVerbForm {
@@ -24,7 +27,10 @@ enum EVerbForm {
   'personCount' = 'personCount',
   'seatStr' = 'seatStr',
   'departTime' = 'departTime',
-  'price' = 'price'
+  'price' = 'price',
+  'carno' = 'carno',
+  'needHelp' = 'needHelp',
+  'rule' = 'rule'
 }
 
 export interface IProps {
@@ -76,7 +82,10 @@ function ShuttlePage(props: IProps) {
     price: defaultData.price,
     priceUnit: defaultData.priceUnit,
     personCount: defaultData.personCount,
-    seatStr: generateSeatStr(defaultData.personCount)
+    seatStr: generateSeatStr(defaultData.personCount),
+    carno: defaultData.carno,
+    needHelp: defaultData.needHelp,
+    rule: defaultData.rule
   } : {
     departTime: defaultData.departTime2,
     depart: defaultData.depart2,
@@ -84,7 +93,10 @@ function ShuttlePage(props: IProps) {
     price: defaultData.price,
     priceUnit: defaultData.priceUnit,
     personCount: defaultData.personCount,
-    seatStr: generateSeatStr(defaultData.personCount)
+    seatStr: generateSeatStr(defaultData.personCount),
+    carno: defaultData.carno,
+    needHelp: defaultData.needHelp,
+    rule: defaultData.rule
   })
 
   const handleVerbFormClick = (key: EVerbForm) => {
@@ -105,11 +117,17 @@ function ShuttlePage(props: IProps) {
       locDataObj.depart1 = d.depart
       locDataObj.destination1 = d.destination
       locDataObj.price = d.price
+      locDataObj.carno = d.carno
+      locDataObj.needHelp = d.needHelp
+      locDataObj.rule = d.rule
     } else if (props.pageType === EType.rightBottom) {
       locDataObj.departTime2 = d.departTime
       locDataObj.depart2 = d.depart
       locDataObj.destination2 = d.destination
       locDataObj.price = d.price
+      locDataObj.carno = d.carno
+      locDataObj.needHelp = d.needHelp
+      locDataObj.rule = d.rule
     }
 
     if (JSON.stringify(locDataObj) !== '{}') {
@@ -165,7 +183,7 @@ function ShuttlePage(props: IProps) {
             <tbody>
               <tr>
                 <td className="tableleft">乘客姓名：</td>
-                <td>陈生</td>
+                <td>金先生</td>
               </tr>
               <tr>
                 <td className="tableleft">手&nbsp;&nbsp;机&nbsp;&nbsp;号：</td>
@@ -186,6 +204,27 @@ function ShuttlePage(props: IProps) {
                   </span>
                 </td>
               </tr>
+
+              <tr onClick={() => handleVerbFormClick(EVerbForm.carno)}>
+                <td className="tableleft">车牌号码：</td>
+                <td>
+                  {showInput === EVerbForm.carno ?
+                    <input
+                      type="text"
+                      defaultValue={verbData.carno}
+                      onBlur={e => updateFormData(EVerbForm.carno, e.target.value)}
+                    /> : <span className="fontblue">{verbData.carno}</span>
+                  }
+                </td>
+              </tr>
+
+              <tr>
+                <td className="tableleft">车辆位置：</td>
+                <td>
+                  <span className="fontblue" style={{ fontSize: 16, fontWeight: 'bold' }}>点击查看车定位</span>
+                </td>
+              </tr>
+
               <tr>
                 <td className="tableleft">预订时间：</td>
                 <td>{moment(new Date().getTime() - 2333333).format('YYYY-MM-DD HH:mm:ss')}</td>
@@ -231,14 +270,30 @@ function ShuttlePage(props: IProps) {
                 <td> 微信支付</td>
               </tr>
 
-              <tr>
+              <tr onClick={() => handleVerbFormClick(EVerbForm.rule)}>
                 <td className="tableleft">退改规则：</td>
-                <td>仅支持在发车前半小时以上退票</td>
+                <td>
+                  {showInput === EVerbForm.rule ?
+                    <input
+                      type="text"
+                      defaultValue={verbData.rule}
+                      onBlur={e => updateFormData(EVerbForm.rule, e.target.value)}
+                    /> : verbData.rule
+                  }
+                </td>
               </tr>
 
-              <tr>
+              <tr onClick={() => handleVerbFormClick(EVerbForm.needHelp)}>
                 <td className="tableleft">如需帮助：</td>
-                <td>客服：18664606665,13602227701(微信同号)</td>
+                <td>
+                  {showInput === EVerbForm.needHelp ?
+                    <input
+                      type="text"
+                      defaultValue={verbData.needHelp}
+                      onBlur={e => updateFormData(EVerbForm.needHelp, e.target.value)}
+                    /> : verbData.needHelp
+                  }
+                </td>
               </tr>
 
             </tbody>

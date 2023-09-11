@@ -16,7 +16,11 @@ const data = {
 
   departTime2: '15:00',
   depart2: '宏发',
-  destination2: '幸福悦3/5期'
+  destination2: '幸福悦3/5期',
+
+  carno: '粤A21235D',
+  needHelp: '客服：18664606665(小罗),13602227701(小陆)(微信同号)',
+  rule: '仅支持在发车前半小时以上退票'
 }
 
 let locData = localStorage.getItem('SHUTTLE')
