@@ -98,6 +98,11 @@ function ShuttlePage(props: IProps) {
     needHelp: defaultData.needHelp,
     rule: defaultData.rule
   })
+  
+  const [carLocationDisplay, setCarLocationDisplay] = useState<Boolean>(true)
+  const changeCarLocationDisplay = () => {
+    setCarLocationDisplay(!carLocationDisplay)
+  }
 
   const handleVerbFormClick = (key: EVerbForm) => {
     setShowInput(key)
@@ -161,7 +166,7 @@ function ShuttlePage(props: IProps) {
           </span>
         </div>
 
-        <div className="main_header2">
+        <div className="main_header2" onClick={() => changeCarLocationDisplay()}>
           <img alt="" src={`${urlPre}/sell/img/carlogo.png`} />
         </div>
 
@@ -205,25 +210,27 @@ function ShuttlePage(props: IProps) {
                 </td>
               </tr>
 
-              <tr onClick={() => handleVerbFormClick(EVerbForm.carno)}>
-                <td className="tableleft">车牌号码：</td>
-                <td>
-                  {showInput === EVerbForm.carno ?
-                    <input
-                      type="text"
-                      defaultValue={verbData.carno}
-                      onBlur={e => updateFormData(EVerbForm.carno, e.target.value)}
-                    /> : <span className="fontblue">{verbData.carno}</span>
-                  }
-                </td>
-              </tr>
+              {carLocationDisplay && <>
+                <tr onClick={() => handleVerbFormClick(EVerbForm.carno)}>
+                  <td className="tableleft">车牌号码：</td>
+                  <td>
+                    {showInput === EVerbForm.carno ?
+                      <input
+                        type="text"
+                        defaultValue={verbData.carno}
+                        onBlur={e => updateFormData(EVerbForm.carno, e.target.value)}
+                      /> : <span className="fontblue">{verbData.carno}</span>
+                    }
+                  </td>
+                </tr>
 
-              <tr>
-                <td className="tableleft">车辆位置：</td>
-                <td>
-                  <span className="fontblue" style={{ fontSize: 16, fontWeight: 'bold' }}>点击查看车定位</span>
-                </td>
-              </tr>
+                <tr>
+                  <td className="tableleft">车辆位置：</td>
+                  <td>
+                    <span className="fontblue" style={{ fontSize: 16, fontWeight: 'bold' }}>点击查看车定位</span>
+                  </td>
+                </tr>
+              </>}
 
               <tr>
                 <td className="tableleft">预订时间：</td>
