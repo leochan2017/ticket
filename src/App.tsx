@@ -2,13 +2,15 @@ import { useState } from 'react'
 import './App.css'
 import TicketPage from './pages/ticket'
 import ShuttlePage from './pages/shuttle'
+import CLshuttlePage from './pages/clshuttle'
 import HiddenPage from './pages/hidden'
 import { EType } from './pages/hidden'
 
 enum EShowPage {
   'none' = '',
   'ticket' = 'ticket',
-  'shuttle' = 'shuttle'
+  'shuttle' = 'shuttle',
+  'CLshuttle' = 'CLshuttle'
 }
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
         setShowPage(EShowPage.ticket)
       } else if (type === EType.leftBottom || type === EType.rightBottom) {
         setShowPage(EShowPage.shuttle)
+      } else if (type === EType.leftCenter || type === EType.rightCenter) {
+        setShowPage(EShowPage.CLshuttle)
       } else {
         console.log('unknown type:', type)
       }
@@ -34,6 +38,10 @@ function App() {
 
   if (showPage === EShowPage.shuttle) {
     return <ShuttlePage pageType={pageType} />
+  }
+
+  if (showPage === EShowPage.CLshuttle) {
+    return <CLshuttlePage pageType={pageType} />
   }
 
   return <div>No data...</div>

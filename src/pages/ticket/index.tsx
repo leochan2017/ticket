@@ -34,6 +34,8 @@ const generateVerifyCode = () => {
 }
 
 function TicketPage(props: IProps) {
+  document.title = '订单查看'
+  
   // console.log('defaultData', defaultData)
 
   document.title = defaultData.title

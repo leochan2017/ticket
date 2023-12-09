@@ -33,3 +33,15 @@
   top: unset;
   bottom: 30px;
 }
+
+.hidden-page-button.left.center {
+  left: 20px;
+  top: unset;
+  bottom: 50%;
+}
+
+.hidden-page-button.right.center {
+  right: 20px;
+  top: unset;
+  bottom: 50%;
+}

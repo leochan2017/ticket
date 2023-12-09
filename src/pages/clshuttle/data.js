@@ -6,24 +6,28 @@ const count = window.location.host.indexOf('localhost') !== -1 ? 1 : 4
 
 const data = {
   count,
-  price: 13,
+  
+  adultPrice: 22,
+  childrenPrice: 11,
+
   priceUnit: '元',
-  personCount: 3,
+  
+  adultCount: 2,
+  childrenCount: 1,
 
-  departTime1: '9:00',
+  departTime1: '7:02',
   depart1: '幸福悦3/5期',
-  destination1: '宏发',
+  destination1: '长隆地铁站G出口',
 
-  departTime2: '15:00',
-  depart2: '宏发',
+  departTime2: '19:02',
+  depart2: '长隆地铁站G出口',
   destination2: '幸福悦3/5期',
 
-  carno: '粤A21235D',
   needHelp: '客服：13763305584(客服号),18664606665(小罗)(微信同号)',
   rule: '仅支持在发车前半小时以上退票'
 }
 
-let locData = localStorage.getItem('SHUTTLE')
+let locData = localStorage.getItem('CLSHUTTLE')
 if (locData) {
   locData = JSON.parse(locData)
   console.log('locData SHUTTLE', locData)
