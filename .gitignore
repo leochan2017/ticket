@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+/src/pages/shuttle/data.js
+/src/pages/clshuttle/data.js
+/src/data.js
