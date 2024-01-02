@@ -74,6 +74,11 @@ const generateSeatStr = (personCount: number) => {
 function ShuttlePage(props: IProps) {
   // console.log('ShuttlePage', props)
   document.title = '订单查看'
+  
+  setTimeout(() => {
+    document.title = '订单查看'
+  }, 3000)
+
   const [showInput, setShowInput] = useState<EVerbForm | null>(null)
   const [verbData, setVerbData] = useState<IVerbData>(props.pageType === EType.leftBottom ? {
     departTime: defaultData.departTime1,

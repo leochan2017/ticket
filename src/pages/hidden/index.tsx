@@ -26,6 +26,9 @@ function HiddenPage(props: IProps) {
   const [leftBottomCount, setLeftBottomCount] = useState<number>(0)
   const [rightBottomCount, setRightBottomCount] = useState<number>(0)
 
+  const [centerBottomCount, setcenterBottomCount] = useState<number>(0)
+
+
   useEffect(() => {
     console.log('useEffect Count: ', leftCount, rightCount)
 
@@ -50,6 +53,14 @@ function HiddenPage(props: IProps) {
       if (rightBottomCount >= defaultData.count) {
         props.onShowPage(EType.rightBottom)
       }
+
+      if (centerBottomCount >= defaultData.count) {
+        localStorage.removeItem('CLSHUTTLE')
+        localStorage.removeItem('SHUTTLE')
+        localStorage.removeItem('CHUANG_XIANG')
+        // alert('LocalStorage has removed!')
+        document.title = 'Please Refresh Page'
+      }
     }
   })
 
@@ -68,6 +79,9 @@ function HiddenPage(props: IProps) {
     <div className={`${cls}-button left bottom`} onClick={() => setLeftBottomCount(leftBottomCount + 1)}></div>
     {/* 右下 */}
     <div className={`${cls}-button right bottom`} onClick={() => setRightBottomCount(rightBottomCount + 1)}></div>
+
+    {/* 中间 */}
+    <div className={`${cls}-button center-center`} onClick={() => setcenterBottomCount(centerBottomCount + 1)}></div>
   </div>
 }
 

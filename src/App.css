@@ -6,6 +6,12 @@
   scrollbar-width: none;
   /* IE 10+ */
   -ms-overflow-style: none;
+
+
+  /* 防微信ios系统字体被手动调大优化 */
+  -webkit-text-size-adjust: 100% !important;
+  text-size-adjust: 100% !important;
+  -moz-text-size-adjust: 100% !important;
 }
 
 /* Chrome Safari */

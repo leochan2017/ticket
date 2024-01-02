@@ -45,3 +45,12 @@
   top: unset;
   bottom: 50%;
 }
+
+.hidden-page-button.center-center {
+  left: 50%;
+  right: 50%;
+  top: 50%;
+  bottom: 50%;
+  margin-left: -20px;
+  margin-top: -20px;
+}

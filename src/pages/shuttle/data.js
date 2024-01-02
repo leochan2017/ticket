@@ -6,20 +6,20 @@ const count = window.location.host.indexOf('localhost') !== -1 ? 1 : 4
 
 const data = {
   count,
-  price: 13,
+  price: 999,
   priceUnit: '元',
   personCount: 3,
 
   departTime1: '9:00',
-  depart1: '幸福悦3/5期',
-  destination1: '宏发',
+  depart1: '123',
+  destination1: '321',
 
   departTime2: '15:00',
-  depart2: '宏发',
-  destination2: '幸福悦3/5期',
+  depart2: '321',
+  destination2: '123',
 
-  carno: '粤A21235D',
-  needHelp: '客服：13763305584(客服号),18664606665(小罗)(微信同号)',
+  carno: '京123',
+  needHelp: '客服：88888888',
   rule: '仅支持在发车前半小时以上退票'
 }
 

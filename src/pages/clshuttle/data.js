@@ -7,8 +7,8 @@ const count = window.location.host.indexOf('localhost') !== -1 ? 1 : 4
 const data = {
   count,
   
-  adultPrice: 22,
-  childrenPrice: 11,
+  adultPrice: 999,
+  childrenPrice: 888,
 
   priceUnit: '元',
   
@@ -16,15 +16,17 @@ const data = {
   childrenCount: 1,
 
   departTime1: '7:02',
-  depart1: '幸福悦3/5期',
-  destination1: '广州南站P8停车场',
+  depart1: '123',
+  destination1: '321',
 
   departTime2: '19:02',
-  depart2: '广州南站P8停车场',
-  destination2: '幸福悦3/5期',
+  depart2: '123',
+  destination2: '321',
 
-  needHelp: '客服：13763305584(客服号),18664606665(小罗)(微信同号)',
-  rule: '仅支持在发车前半小时以上退票'
+  needHelp: '客服：88888888',
+  rule: '仅支持在发车前半小时以上退票',
+
+  carno: '京8888'
 }
 
 let locData = localStorage.getItem('CLSHUTTLE')

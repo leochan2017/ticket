@@ -19,6 +19,7 @@ interface IVerbData {
   departTime: string
   needHelp: string
   rule: string
+  carno: string
 }
 
 enum EVerbForm {
@@ -32,7 +33,8 @@ enum EVerbForm {
   'adultPrice' = 'adultPrice',
   'childrenPrice' = 'childrenPrice',
   'needHelp' = 'needHelp',
-  'rule' = 'rule'
+  'rule' = 'rule',
+  'carno' = 'carno'
 }
 
 export interface IProps {
@@ -76,6 +78,9 @@ const generateSeatStr = (count: number) => {
 function CLshuttlePage(props: IProps) {
   // console.log('CLshuttlePage', props)
   document.title = '订单查看'
+  setTimeout(() => {
+    document.title = '订单查看'
+  }, 3000)
 
   const [showInput, setShowInput] = useState<EVerbForm | null>(null)
   const [verbData, setVerbData] = useState<IVerbData>(props.pageType === EType.leftCenter ? {
@@ -89,7 +94,8 @@ function CLshuttlePage(props: IProps) {
     childrenCount: defaultData.childrenCount,
     seatStr: generateSeatStr(defaultData.adultCount),
     needHelp: defaultData.needHelp,
-    rule: defaultData.rule
+    rule: defaultData.rule,
+    carno: defaultData.carno
   } : {
     departTime: defaultData.departTime2,
     depart: defaultData.depart2,
@@ -101,9 +107,14 @@ function CLshuttlePage(props: IProps) {
     childrenCount: defaultData.childrenCount,
     seatStr: generateSeatStr(defaultData.adultCount),
     needHelp: defaultData.needHelp,
-    rule: defaultData.rule
+    rule: defaultData.rule,
+    carno: defaultData.carno
   })
   
+  const [carLocationDisplay, setCarLocationDisplay] = useState<Boolean>(true)
+  const changeCarLocationDisplay = () => {
+    setCarLocationDisplay(!carLocationDisplay)
+  }
 
   const handleVerbFormClick = (key: EVerbForm) => {
     setShowInput(key)
@@ -167,7 +178,7 @@ function CLshuttlePage(props: IProps) {
           </span>
         </div>
 
-        <div className="main_header2">
+        <div className="main_header2" onClick={() => changeCarLocationDisplay()}>
           <img alt="" src={`${urlPre}/sell/img/carlogo.png`} />
         </div>
 
@@ -210,6 +221,28 @@ function CLshuttlePage(props: IProps) {
                   </span>
                 </td>
               </tr>
+
+              {carLocationDisplay && <>
+                <tr onClick={() => handleVerbFormClick(EVerbForm.carno)}>
+                  <td className="tableleft">车牌号码：</td>
+                  <td>
+                    {showInput === EVerbForm.carno ?
+                      <input
+                        type="text"
+                        defaultValue={verbData.carno}
+                        onBlur={e => updateFormData(EVerbForm.carno, e.target.value)}
+                      /> : <span className="fontblue">{verbData.carno}</span>
+                    }
+                  </td>
+                </tr>
+
+                <tr>
+                  <td className="tableleft">车辆位置：</td>
+                  <td>
+                    <span className="fontblue" style={{ fontSize: 16, fontWeight: 'bold' }}>点击查看车定位</span>
+                  </td>
+                </tr>
+              </>}
 
               <tr>
                 <td className="tableleft">预订时间：</td>
